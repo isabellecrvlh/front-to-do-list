@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <iframe src="https://open.spotify.com/embed/playlist/6zCID88oNjNv9zx6puDHKj?utm_source=generator" 
+                    width="350" height="100" frameborder="0" allow="encrypted-media"></iframe>
+            <h2 class="header-title">Aqui estão suas tarefas!</h2>
+            <button id="logout" title="Até breve!">DESLOGAR</button>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="email" id="email" placeholder="Digite seu e-mail" required>
+        <button id="login-btn">Entrar</button>
+    </div>
+
+    <div class="board">
+        <div class="list" id="to-do">
+            <h2>To Do</h2>
+            <div class="task-container">
+                <input type="text" id="task-input" placeholder="Tarefa" />
+                <button id="add-task-btn">Adicionar Tarefa</button>
+                <ul id="task-list"></ul>
+            </div>
+        </div>
+
+        <div class="list" id="in-progress">
+            <h2>Doing</h2>
+            <div class="task-container"></div>
+        </div>
+
+        <div class="list" id="done">
+            <h2>Done</h2>
+            <div class="task-container"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="todolist.js"></script>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="developers-info">
+                <p class="dev-names">Desenvolvedores: Nome 1, Nome 2</p>
+                <p class="university-name">Faculdade XYZ</p>
+            </div>
+            <div class="comments-section">
+                <h4>Comentários dos Usuários</h4>
+                <ul class="comments">
+                    <li>Ótimo aplicativo! ⭐⭐⭐⭐⭐</li>
+                    <li>Me ajudou muito! ⭐⭐⭐⭐</li>
+                    <li>Precisa de mais funcionalidades. ⭐⭐⭐</li>
+                    <li>Interface muito bonita! ⭐⭐⭐⭐⭐</li>
+                    <li>Facilidade de uso. ⭐⭐⭐⭐</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

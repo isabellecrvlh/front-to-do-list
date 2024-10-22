@@ -1,0 +1,135 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(270deg, #5F9EA0, #00FA9A, #BC8F8F, #BA55D3);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    margin: 0; /* Remove margens padrão */
+    padding-top: 160px; /* Espaço para o cabeçalho fixo */
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    position: fixed; /* Fixa o cabeçalho no topo */
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9); /* Fundo semitransparente */
+    padding: 10px 20px; /* Espaçamento interno do cabeçalho */
+    z-index: 1000; /* Mantém o cabeçalho acima de outros elementos */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.header-title {
+    flex-grow: 1; /* Faz o título ocupar o espaço restante */
+    text-align: center;
+    color: #000; /* Cor do texto */
+}
+
+.login-container {
+    margin: 20px auto; /* Centraliza a seção de login */
+    max-width: 300px; /* Largura máxima para a área de login */
+    padding: 20px; /* Espaçamento interno */
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semitransparente */
+    border-radius: 5px; /* Arredonda os cantos */
+    text-align: center; /* Alinha o texto ao centro */
+    position: relative; /* Ajusta o posicionamento */
+    z-index: 10; /* Garante que o login fique acima de outros elementos */
+}
+
+.board {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 20px; /* Adiciona espaço acima do conteúdo para não ficar atrás do cabeçalho fixo */
+}
+
+.list {
+    background-color: #fff;
+    border-radius: 5px;
+    width: 30%;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #7B68EE; /* Cor de fundo do botão Entrar */
+    color: #FFF; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    padding: 10px 15px; /* Adiciona espaço interno */
+    border-radius: 5px; /* Arredonda os cantos */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    font-size: 16px; /* Define o tamanho da fonte */
+}
+
+button:hover {
+    background-color: #6A5ACD; /* Cor do botão ao passar o mouse (opcional) */
+}
+
+footer {
+    background-color: transparent; /* Remove o fundo branco */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinha os itens na parte superior */
+    width: 100%; /* Largura total */
+    margin-top: 20px; /* Espaçamento acima do rodapé */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.developers-info {
+    text-align: left;
+    max-width: 200px; /* Define a largura máxima para os desenvolvedores */
+}
+
+.comments-section {
+    text-align: right; /* Alinha a seção de comentários à direita */
+    max-width: 300px; /* Define a largura máxima para os comentários */
+}
+
+.comments {
+    list-style-type: none; /* Remove os marcadores padrão */
+    padding: 0;
+    margin: 5px 0 0; /* Margem acima dos comentários */
+}
+
+.comments li {
+    margin: 5px 0; /* Espaçamento entre os comentários */
+    font-size: 14px; /* Tamanho da fonte dos comentários */
+}
+
+.comments-section h4 {
+    font-size: 14px; /* Tamanho do cabeçalho de comentários */
+    margin: 0; /* Remove margens para melhor alinhamento */
+}
+
+* {
+    box-sizing: border-box;
+}
