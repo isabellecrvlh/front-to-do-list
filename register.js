@@ -22,4 +22,5 @@ document.getElementById('registerForm').addEventListener('submit', function(even
 
     alert("Cadastro realizado com sucesso!");
     window.location.href = "index.html"; // Redireciona para a página de login
+    // teste
 });
