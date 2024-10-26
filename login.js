@@ -15,7 +15,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         window.location.href = "todolist.html"; // Redireciona para a página de tarefas
     } else {
         const errorMessage = document.getElementById('errorMessage');
-        errorMessage.textContent = "E-mail ou senha incorretos!";
+        errorMessage.textContent = "Incorrect e-mail or password!";
         errorMessage.style.display = "block";
     }
 });

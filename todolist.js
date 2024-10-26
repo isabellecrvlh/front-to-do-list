@@ -27,32 +27,10 @@ function addTask() {
         listItem.querySelector('.delete-btn').addEventListener('click', () => deleteTask(listItem));
         listItem.querySelector('.complete-btn').addEventListener('click', () => completeTask(listItem));
     } else {
-        alert('Por favor, digite uma tarefa.'); // Alerta se o campo estiver vazio
+        alert('Please, add your task.'); // Alerta se o campo estiver vazio
     }
 }
 
-function openEditPopup(listItem) {
-    const taskTextElement = listItem.querySelector('.task-text');
-    const editPopup = document.getElementById('editPopup');
-    const editTextArea = document.getElementById('editText');
-
-    // Define o texto da tarefa no textarea
-    editTextArea.value = taskTextElement.innerHTML;
-    
-    editPopup.style.display = 'block';
-
-    // Salvar a edição
-    document.getElementById('saveEdit').onclick = function () {
-        const editedText = editTextArea.value;
-        taskTextElement.innerHTML = editedText;
-        editPopup.style.display = 'none';
-    };
-}
-
-// Fecha o popup ao clicar no 'X'
-document.getElementById('closePopup').onclick = function () {
-    document.getElementById('editPopup').style.display = 'none';
-};
 
 function deleteTask(listItem) {
     listItem.remove();
@@ -72,25 +50,6 @@ function openEditPopup(listItem) {
     const taskTextElement = listItem.querySelector('.task-text');
     const editPopup = document.getElementById('editPopup');
     
-    // Inicializa o Quill
-    if (!quill) {
-        quill = new Quill('#editor-container', {
-            theme: 'snow',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline', 'strike'],
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }]
-                ]
-            }
-        });
-    }
-
-    // Define o texto da tarefa no editor
-    const delta = quill.clipboard.convert(taskTextElement.innerHTML);
-    quill.setContents(delta);
-    
-    editPopup.style.display = 'block';
-
     // Salvar a edição
     document.getElementById('saveEdit').onclick = function () {
         const editedText = quill.root.innerHTML; // Pega o HTML formatado
