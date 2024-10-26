@@ -84,6 +84,40 @@ button {
     font-size: 16px; /* Define o tamanho da fonte */
 }
 
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* Para manter o popup acima de outros elementos */
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column; /* Alinha os itens em coluna */
+}
+
+.popup h3 {
+    margin: 0 0 10px; /* Margem abaixo do cabeçalho */
+    text-align: center; /* Centraliza o título */
+}
+
+.popup input {
+    width: calc(100% - 20px); /* Para manter algum espaço nas laterais */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.popup button {
+    margin: 5px 0; /* Margem entre os botões */
+}
+
 footer {
     background-color: transparent; /* Remove o fundo branco */
     padding: 10px 20px;
