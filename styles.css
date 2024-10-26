@@ -103,6 +103,7 @@ footer {
 .developers-info {
     text-align: left;
     max-width: 500px; /* Define a largura máxima para os desenvolvedores e faculdade */
+    font-size: 10px; /* Tamanho da fonte */
 }
 
 .comments-section {
