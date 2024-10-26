@@ -27,10 +27,9 @@ function addTask() {
         listItem.querySelector('.delete-btn').addEventListener('click', () => deleteTask(listItem));
         listItem.querySelector('.complete-btn').addEventListener('click', () => completeTask(listItem));
     } else {
-        alert('Please, add your task.'); // Alerta se o campo estiver vazio
+        alert('Please,.'); // Alerta se o campo estiver vazio
     }
 }
-
 
 function deleteTask(listItem) {
     listItem.remove();
@@ -43,19 +42,3 @@ function completeTask(listItem) {
     listItem.querySelector('.delete-btn').remove();
     listItem.querySelector('.complete-btn').remove();
 }
-
-let quill;
-
-function openEditPopup(listItem) {
-    const taskTextElement = listItem.querySelector('.task-text');
-    const editPopup = document.getElementById('editPopup');
-    
-    // Salvar a edição
-    document.getElementById('saveEdit').onclick = function () {
-        const editedText = quill.root.innerHTML; // Pega o HTML formatado
-        taskTextElement.innerHTML = editedText;
-        editPopup.style.display = 'none';
-    };
-    // comentario
-}
-
