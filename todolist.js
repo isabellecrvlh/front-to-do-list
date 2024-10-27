@@ -1,4 +1,9 @@
-// todolist.js
+// Configuração do botão Sign Out
+document.getElementById('logout').addEventListener('click', () => {
+    localStorage.removeItem('users'); // Remove os dados do usuário do localStorage
+    window.location.href = 'index.html'; // Redireciona para a página de login (index.html)
+});
+
 document.getElementById('add-task-btn').addEventListener('click', addTask);
 document.getElementById('task-input').addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
@@ -8,7 +13,7 @@ document.getElementById('task-input').addEventListener('keypress', function (eve
 
 function addTask() {
     const taskInput = document.getElementById('task-input');
-    const taskText = taskInput.value;
+    const taskText = taskInput.value.trim(); // Remove espaços em branco
 
     if (taskText) {
         const taskList = document.getElementById('task-list');
@@ -43,6 +48,7 @@ function completeTask(listItem) {
     if (doingList.contains(listItem)) {
         doneList.appendChild(listItem);
         listItem.querySelector('.complete-btn').remove(); // Remove o botão de concluir ao mover para Done
+        listItem.querySelector('.delete-btn').remove(); // Remove o botão de lixeira ao mover para Done
     } else {
         doingList.appendChild(listItem);
     }
@@ -52,7 +58,7 @@ function completeTask(listItem) {
         listItem.querySelector('.edit-btn').style.display = 'inline'; // Mostra o botão "Edit Task"
     }
 
-    // Remove o botão "Edit Task" ao concluir
+    // Remove o botão "Edit Task" ao mover para Done
     if (doneList.contains(listItem)) {
         listItem.querySelector('.edit-btn').remove();
     }
@@ -77,7 +83,7 @@ function openEditPopup(listItem) {
 
     // Salvar edição
     document.getElementById('save-btn').addEventListener('click', () => {
-        const newText = document.getElementById('edit-task-input').value;
+        const newText = document.getElementById('edit-task-input').value.trim();
         if (newText) {
             taskTextElement.innerText = newText;
             document.body.removeChild(popup); // Remove o popup
