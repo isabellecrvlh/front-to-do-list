@@ -154,6 +154,36 @@ button {
     }
 }
 
+.tasks-header {
+    display: flex;
+    justify-content: space-between; /* Alinha os itens com espaço entre eles */
+    align-items: center; /* Alinha verticalmente no centro */
+}
+
+.tasks-title {
+    font-size: 12px; /* Diminuindo o tamanho da fonte */
+}
+
+.calendar-container {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    margin-left: 30px; /* Espaço à esquerda do calendário */
+}
+
+.calendar {
+    color: #000; /* Cor do texto preta */
+    padding: 10px; /* Espaçamento */
+    border-radius: 5px; /* Arredondar cantos */
+    font-size: 11px; /* Tamanho da fonte menor */
+    display: flex;
+    flex-direction: column; /* Coloca os itens em coluna */
+    align-items: center; /* Centraliza os itens dentro do calendário */
+}
+
+.day, .time {
+    margin: 50px 0; /* Espaçamento vertical entre os itens */
+}
+
 .popup {
     position: fixed;
     top: 50%;
