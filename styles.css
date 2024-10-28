@@ -223,6 +223,77 @@ button {
         transform: rotate(360deg);
     }
 } 
+
+.logout-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    border: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10rem;
+    transition: all 0.02s;
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(37, 37, 37);
+    z-index: 0;
+    box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+    background: rgb(193, 228, 248);
+}
+
+.logout-button:hover {
+    background: rgb(193, 228, 248);
+    color: rgb(33, 0, 85);
+}
+
+.logout-button:active {
+    transform: scale(0.97);
+}
+
+.hoverEffect {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.hoverEffect div {
+    background: rgb(222, 0, 75);
+    background: linear-gradient(
+        90deg,
+        rgba(222, 0, 75, 1) 0%,
+        rgba(191, 70, 255, 1) 49%,
+        rgba(0, 212, 255, 1) 100%
+    );
+    border-radius: 40rem;
+    width: 10rem;
+    height: 10rem;
+    transition: 0.4s;
+    filter: blur(20px);
+    animation: effect infinite 3s linear;
+    opacity: 0.5;
+}
+
+.logout-button:hover .hoverEffect div {
+    width: 8rem;
+    height: 8rem;
+}
+
+@keyframes effect {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .tasks-header {
     display: flex;
     justify-content: space-between; /* Alinha os itens com espaço entre eles */
@@ -231,26 +302,6 @@ button {
 
 .tasks-title {
     font-size: 12px; /* Diminuindo o tamanho da fonte */
-}
-
-.calendar-container {
-    display: flex;
-    align-items: center; /* Centraliza verticalmente */
-    margin-left: 30px; /* Espaço à esquerda do calendário */
-}
-
-.calendar {
-    color: #000; /* Cor do texto preta */
-    padding: 10px; /* Espaçamento */
-    border-radius: 5px; /* Arredondar cantos */
-    font-size: 11px; /* Tamanho da fonte menor */
-    display: flex;
-    flex-direction: column; /* Coloca os itens em coluna */
-    align-items: center; /* Centraliza os itens dentro do calendário */
-}
-
-.day, .time {
-    margin: 50px 0; /* Espaçamento vertical entre os itens */
 }
 
 .popup {

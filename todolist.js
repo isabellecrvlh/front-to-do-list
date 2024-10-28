@@ -11,24 +11,6 @@ document.getElementById('task-input').addEventListener('keypress', function (eve
     }
 });
 
-function updateCalendar() {
-    const now = new Date();
-    const options = { weekday: 'short' }; // Formato para dia da semana
-    const dayOfWeek = now.toLocaleDateString('pt-BR', options).toUpperCase(); // Dia da semana
-    const date = now.toLocaleDateString('pt-BR'); // Data
-    const time = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }); // Hora
-
-    document.getElementById('dayOfWeek').innerText = dayOfWeek;
-    document.getElementById('date').innerText = date;
-    document.getElementById('time').innerText = time;
-}
-
-// Atualiza o calendário ao carregar a página
-window.onload = updateCalendar;
-
-// Atualiza a cada minuto
-setInterval(updateCalendar, 60000);
-
 function addTask() {
     const taskInput = document.getElementById('task-input');
     const taskText = taskInput.value.trim(); // Remove espaços em branco
