@@ -1,3 +1,5 @@
+const userAPI = "http://localhost:8097/users";
+
 // register.js
 document
   .getElementById("registerForm")
