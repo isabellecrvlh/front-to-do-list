@@ -1,0 +1,386 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(270deg,rgb(222, 181, 244) 49%, rgb(179, 242, 255) 100%);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    margin: 0; /* Remove margens padrão */
+    padding-top: 160px; /* Espaço para o cabeçalho fixo */
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    position: fixed; /* Fixa o cabeçalho no topo */
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.674); /* Fundo semitransparente */
+    padding: 10px 20px; /* Espaçamento interno do cabeçalho */
+    z-index: 1000; /* Mantém o cabeçalho acima de outros elementos */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.header-title {
+    flex-grow: 1; /* Faz o título ocupar o espaço restante */
+    text-align: center;
+    color: #000; /* Cor do texto */
+}
+
+.login-container {
+    margin: -50px auto; /* Centraliza a seção de login */
+    max-width: 300px; /* Largura máxima para a área de login */
+    padding: 15px; /* Espaçamento interno */
+    background-color: rgba(255, 255, 255, 0.621); /* Fundo semitransparente */
+    border-radius: 10px; /* Arredonda os cantos */
+    text-align: center; /* Alinha o texto ao centro */
+    position: relative; /* Ajusta o posicionamento */
+    z-index: 10; /* Garante que o login fique acima de outros elementos */
+}
+
+.board {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 50px; /* Adiciona espaço acima do conteúdo para não ficar atrás do cabeçalho fixo */
+}
+
+.list {
+    background-color: #ffffffc2;
+    border-radius: 5px;
+    width: 30%;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #7B68EE; /* Cor de fundo do botão Entrar */
+    color: #FFF; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    padding: 10px 15px; /* Adiciona espaço interno */
+    border-radius: 5px; /* Arredonda os cantos */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    font-size: 16px; /* Define o tamanho da fonte */
+}
+
+.submit-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    border: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10rem;
+    transition: all 0.02s;
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(37, 37, 37);
+    z-index: 0;
+    box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+    background: rgb(193, 228, 248);
+}
+
+.submit-button:hover {
+    background: rgb(193, 228, 248);
+    color: rgb(33, 0, 85);
+}
+
+.submit-button:active {
+    transform: scale(0.97);
+}
+
+.hoverEffect {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.hoverEffect div {
+    background: rgb(222, 0, 75);
+    background: linear-gradient(
+        90deg,
+        rgba(222, 0, 75, 1) 0%,
+        rgba(191, 70, 255, 1) 49%,
+        rgba(0, 212, 255, 1) 100%
+    );
+    border-radius: 40rem;
+    width: 10rem;
+    height: 10rem;
+    transition: 0.4s;
+    filter: blur(20px);
+    animation: effect infinite 3s linear;
+    opacity: 0.5;
+}
+
+.submit-button:hover .hoverEffect div {
+    width: 8rem;
+    height: 8rem;
+}
+
+@keyframes effect {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.register-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    border: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10rem;
+    transition: all 0.02s;
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(37, 37, 37);
+    z-index: 0;
+    box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+    background: rgb(193, 228, 248);
+}
+
+.register-button:hover {
+    background: rgb(193, 228, 248);
+    color: rgb(33, 0, 85);
+}
+
+.register-button:active {
+    transform: scale(0.97);
+}
+
+.hoverEffect {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.hoverEffect div {
+    background: rgb(222, 0, 75);
+    background: linear-gradient(
+        90deg,
+        rgba(222, 0, 75, 1) 0%,
+        rgba(191, 70, 255, 1) 49%,
+        rgba(0, 212, 255, 1) 100%
+    );
+    border-radius: 40rem;
+    width: 10rem;
+    height: 10rem;
+    transition: 0.4s;
+    filter: blur(20px);
+    animation: effect infinite 3s linear;
+    opacity: 0.5;
+}
+
+.register-button:hover .hoverEffect div {
+    width: 8rem;
+    height: 8rem;
+}
+
+@keyframes effect {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+} 
+
+.logout-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    border: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10rem;
+    transition: all 0.02s;
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(37, 37, 37);
+    z-index: 0;
+    box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+    background: rgb(193, 228, 248);
+}
+
+.logout-button:hover {
+    background: rgb(193, 228, 248);
+    color: rgb(33, 0, 85);
+}
+
+.logout-button:active {
+    transform: scale(0.97);
+}
+
+.hoverEffect {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.hoverEffect div {
+    background: rgb(222, 0, 75);
+    background: linear-gradient(
+        90deg,
+        rgba(222, 0, 75, 1) 0%,
+        rgba(191, 70, 255, 1) 49%,
+        rgba(0, 212, 255, 1) 100%
+    );
+    border-radius: 40rem;
+    width: 10rem;
+    height: 10rem;
+    transition: 0.4s;
+    filter: blur(20px);
+    animation: effect infinite 3s linear;
+    opacity: 0.5;
+}
+
+.logout-button:hover .hoverEffect div {
+    width: 8rem;
+    height: 8rem;
+}
+
+@keyframes effect {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.tasks-header {
+    display: flex;
+    justify-content: space-between; /* Alinha os itens com espaço entre eles */
+    align-items: center; /* Alinha verticalmente no centro */
+}
+
+.tasks-title {
+    font-size: 12px; /* Diminuindo o tamanho da fonte */
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* Para manter o popup acima de outros elementos */
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column; /* Alinha os itens em coluna */
+}
+
+.popup h3 {
+    margin: 0 0 10px; /* Margem abaixo do cabeçalho */
+    text-align: center; /* Centraliza o título */
+}
+
+.popup input {
+    width: calc(100% - 20px); /* Para manter algum espaço nas laterais */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.popup button {
+    margin: 5px 0; /* Margem entre os botões */
+}
+
+footer {
+    background-color: transparent; /* Remove o fundo branco */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinha os itens na parte superior */
+    width: 100%; /* Largura total */
+    margin-top: 20px; /* Espaçamento acima do rodapé */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.developers-info {
+    text-align: left;
+    max-width: 500px; /* Define a largura máxima para os desenvolvedores e faculdade */
+    font-size: 10px; /* Tamanho da fonte */
+}
+
+.comments-section {
+    text-align: right; /* Alinha a seção de comentários à direita */
+    max-width: 300px; /* Define a largura máxima para os comentários */
+}
+
+.comments {
+    list-style-type: none; /* Remove os marcadores padrão */
+    padding: 0;
+    margin: 10px 0 0; /* Margem acima dos comentários */
+}
+
+.comments li {
+    margin: 5px 0; /* Espaçamento entre os comentários */
+    font-size: 10px; /* Tamanho da fonte dos comentários */
+}
+
+.comments-section h4 {
+    font-size: 12px; /* Tamanho do cabeçalho de comentários */
+    margin: 0; /* Remove margens para melhor alinhamento */
+}
+
+* {
+    box-sizing: border-box;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - To-Do List</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="email">E-mail Address:</label>
+        <input type="email" id="email" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" required />
+        <button type="submit" class="submit-button">
+          Login
+          <div class="hoverEffect">
+            <div></div>
+          </div>
+        </button>
+        <p id="errorMessage" class="error-message"></p>
+      </form>
+      <p>Do you have an account? <a href="../html/register.html">Register here!</a></p>
+    </div>
+
+    <button id="logout" style="display: none">Logout</button>
+
+    <script src="../javascript/../javascript/login.js"></script>
+    <script src="../javascript/../javascript/todolist.js"></script>
+  </body>
+</html>
