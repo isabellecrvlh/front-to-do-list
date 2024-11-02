@@ -26,6 +26,7 @@ document
 
         if (user) {
           // Autenticação bem-sucedida
+          localStorage.setItem("userId", user.id); // Armazena o ID do usuário no localStorage
           window.location.href = "todolist.html"; // Redireciona para a página de tarefas
         } else {
           // E-mail ou senha incorretos
