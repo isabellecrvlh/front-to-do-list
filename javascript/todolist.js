@@ -213,3 +213,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+// feito por André, Isabelle e Marcelo
