@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <span class="task-desc">${task.description}</span>
         <button class="edit-btn">Edit Task</button>
         <button class="delete-btn">🗑️</button>
-        <button class="complete-btn">✔️</button>
+        <button class="complete-btn">✅</button>
       `;
 
     listItem

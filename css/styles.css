@@ -86,7 +86,7 @@ input {
 
 button {
   background-color: #7b68ee; /* Cor de fundo do botão Entrar */
-  color: #fff; /* Cor do texto do botão */
+  color: #ffffff; /* Cor do texto do botão */
   border: none; /* Remove a borda padrão */
   padding: 10px 15px; /* Adiciona espaço interno */
   border-radius: 5px; /* Arredonda os cantos */
