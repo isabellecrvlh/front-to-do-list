@@ -10,12 +10,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Configuração do botão de adicionar tarefas
     const addButton = document.getElementById('add-task-btn');
-    const taskInput = document.getElementById('task-input');
+    const taskTitleInput = document.getElementById('task-title-input');
+    const taskDescInput = document.getElementById('task-desc-input');
     const taskList = document.getElementById('task-list');
 
-    if (addButton && taskInput) {
+    if (addButton && taskTitleInput && taskDescInput) {
         addButton.addEventListener('click', addTask);
-        taskInput.addEventListener('keypress', function (event) {
+        taskTitleInput.addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                addTask();
+            }
+        });
+        taskDescInput.addEventListener('keypress', function (event) {
             if (event.key === 'Enter') {
                 addTask();
             }
@@ -23,23 +29,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function addTask() {
-        const taskText = taskInput.value.trim();
-        if (taskText) {
+        const taskTitle = taskTitleInput.value.trim();
+        const taskDesc = taskDescInput.value.trim();
+        
+        if (taskTitle && taskDesc) {
             const listItem = document.createElement('li');
             listItem.innerHTML = `
-                <span class="task-text">${taskText}</span>
+                <span class="task-title"><strong>${taskTitle}</strong></span>
+                <span class="task-desc">${taskDesc}</span>
                 <button class="edit-btn">Edit Task</button>
                 <button class="delete-btn">🗑️</button>
                 <button class="complete-btn">✔️</button>
             `;
             taskList.appendChild(listItem);
-            taskInput.value = '';
+            taskTitleInput.value = '';
+            taskDescInput.value = '';
 
             listItem.querySelector('.edit-btn').addEventListener('click', () => openEditPopup(listItem));
             listItem.querySelector('.delete-btn').addEventListener('click', () => deleteTask(listItem));
             listItem.querySelector('.complete-btn').addEventListener('click', () => completeTask(listItem));
         } else {
-            alert('Please enter a task.');
+            alert('Please enter both title and description for the task.');
         }
     }
 
@@ -69,15 +79,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function openEditPopup(listItem) {
-        const taskTextElement = listItem.querySelector('.task-text');
-        const currentText = taskTextElement.innerText;
+        const taskTitleElement = listItem.querySelector('.task-title');
+        const taskDescElement = listItem.querySelector('.task-desc');
+        const currentTitle = taskTitleElement.innerText;
+        const currentDesc = taskDescElement.innerText;
 
         const popup = document.createElement('div');
         popup.classList.add('popup');
         popup.innerHTML = `
             <div class="popup-content">
                 <h3>Edit Task</h3>
-                <input type="text" id="edit-task-input" value="${currentText}" />
+                <input type="text" id="edit-task-title" value="${currentTitle}" />
+                <input type="text" id="edit-task-desc" value="${currentDesc}" />
                 <button id="save-btn">Save</button>
                 <button id="cancel-btn">Cancel</button>
             </div>
@@ -85,12 +98,15 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.appendChild(popup);
 
         document.getElementById('save-btn').addEventListener('click', () => {
-            const newText = document.getElementById('edit-task-input').value.trim();
-            if (newText) {
-                taskTextElement.innerText = newText;
+            const newTitle = document.getElementById('edit-task-title').value.trim();
+            const newDesc = document.getElementById('edit-task-desc').value.trim();
+            
+            if (newTitle && newDesc) {
+                taskTitleElement.innerText = newTitle;
+                taskDescElement.innerText = newDesc;
                 document.body.removeChild(popup);
             } else {
-                alert('Task text cannot be empty!');
+                alert('Task title and description cannot be empty!');
             }
         });
 

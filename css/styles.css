@@ -361,8 +361,28 @@ footer {
 }
 
 .comments-section {
-    text-align: right; /* Alinha a seção de comentários à direita */
-    max-width: 300px; /* Define a largura máxima para os comentários */
+    text-align: right;
+    max-width: 200px;
+    overflow: hidden; /* Oculta o texto que sai dos limites */
+}
+
+.comments-scroll {
+    height: 70px; /* Altura visível para o efeito de rolagem */
+    overflow: hidden;
+    position: relative;
+}
+
+.comments {
+    animation: scrollComments 15s linear infinite; /* Inicia a animação */
+}
+
+@keyframes scrollComments {
+    0% {
+        transform: translateY(100%); /* Começa fora da visualização */
+    }
+    100% {
+        transform: translateY(-100%); /* Sobe e desaparece */
+    }
 }
 
 .comments {
