@@ -13,25 +13,55 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await fetch(
         `http://localhost:8097/tasks/user/${userId}`
       );
-      const tasks = await response.json(); // Corrigido para converter a resposta em JSON
+      const tasks = await response.json(); // Converte a resposta em JSON
       tasks.forEach((task) => {
         const taskElement = createTaskElement(task);
-        if (task.status === "TODO") {
-          document.getElementById("task-list").appendChild(taskElement);
-        } else if (task.status === "DOING") {
-          document
-            .getElementById("in-progress")
-            .querySelector(".task-container")
-            .appendChild(taskElement);
-        } else if (task.status === "DONE") {
-          document
-            .getElementById("done")
-            .querySelector(".task-container")
-            .appendChild(taskElement);
-        }
+        appendTaskToColumn(taskElement, task.status);
       });
     } catch (error) {
       console.error("Erro ao carregar tarefas:", error);
+    }
+  }
+
+  // Função para criar o elemento visual da tarefa
+  function createTaskElement(task) {
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `
+        <span class="task-title"><strong>${task.title}</strong></span>
+        <span class="task-desc">${task.description}</span>
+        <button class="edit-btn">Edit Task</button>
+        <button class="delete-btn">🗑️</button>
+        <button class="complete-btn">✔️</button>
+      `;
+
+    listItem
+      .querySelector(".edit-btn")
+      .addEventListener("click", () => openEditPopup(listItem, task));
+    listItem
+      .querySelector(".delete-btn")
+      .addEventListener("click", () => deleteTask(listItem, task.id));
+    listItem
+      .querySelector(".complete-btn")
+      .addEventListener("click", () => completeTask(listItem, task));
+    return listItem;
+  }
+
+  // Função para adicionar uma tarefa na coluna correta
+  function appendTaskToColumn(taskElement, status) {
+    if (status === "TODO") {
+      document.getElementById("task-list").appendChild(taskElement);
+    } else if (status === "DOING") {
+      document
+        .getElementById("in-progress")
+        .querySelector(".task-container")
+        .appendChild(taskElement);
+    } else if (status === "DONE") {
+      document
+        .getElementById("done")
+        .querySelector(".task-container")
+        .appendChild(taskElement);
+      taskElement.querySelector(".complete-btn").remove(); // Remove botão de completar
+      taskElement.querySelector(".edit-btn").remove(); // Remove botão de edição
     }
   }
 
@@ -39,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function getTaskFromInput() {
     const title = document.getElementById("task-title-input").value;
     const description = document.getElementById("task-desc-input").value;
-    const task = {
+    return {
       title: title,
       description: description,
       status: "TODO", // Status padrão
@@ -47,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
         id: userId,
       },
     };
-    return task;
   }
 
   // Função para criar a tarefa na API
@@ -66,35 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       const createdTask = await response.json();
       const taskElement = createTaskElement(createdTask);
-      document.getElementById("task-list").appendChild(taskElement);
+      appendTaskToColumn(taskElement, createdTask.status);
     } catch (error) {
       console.error(error);
     }
-  }
-
-  // Função para criar o elemento visual da tarefa
-  function createTaskElement(task) {
-    const listItem = document.createElement("li");
-    listItem.innerHTML = `
-        <span class="task-title"><strong>${task.title}</strong></span>
-        <span class="task-desc">${task.description}</span>
-        <button class="edit-btn">Edit Task</button>
-        <button class="delete-btn">🗑️</button>
-        <button class="complete-btn">✔️</button>
-      `;
-
-    listItem
-      .querySelector(".edit-btn")
-      .addEventListener("click", () => openEditPopup(listItem, task.id));
-    listItem
-      .querySelector(".delete-btn")
-      .addEventListener("click", () => deleteTask(listItem, task.id));
-    listItem
-      .querySelector(".complete-btn")
-      .addEventListener("click", () =>
-        completeTask(listItem, task.id, task.status)
-      );
-    return listItem;
   }
 
   // Adiciona o evento de clique ao botão para criar a tarefa
@@ -115,11 +119,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Editar tarefa
-  function openEditPopup(listItem, taskId) {
+  function openEditPopup(listItem, task) {
     const taskTitleElement = listItem.querySelector(".task-title");
     const taskDescElement = listItem.querySelector(".task-desc");
-    const currentTitle = taskTitleElement.innerText;
-    const currentDesc = taskDescElement.innerText;
+    const currentTitle = task.title;
+    const currentDesc = task.description;
 
     const popup = document.createElement("div");
     popup.classList.add("popup");
@@ -140,10 +144,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (newTitle && newDesc) {
         try {
-          await fetch(`http://localhost:8097/tasks/${taskId}`, {
+          const updatedTask = {
+            ...task,
+            title: newTitle,
+            description: newDesc,
+          };
+          await fetch(`http://localhost:8097/tasks/${task.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ title: newTitle, description: newDesc }),
+            body: JSON.stringify(updatedTask),
           });
           taskTitleElement.innerText = newTitle;
           taskDescElement.innerText = newDesc;
@@ -174,33 +183,31 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Completar tarefa e mover para a coluna seguinte
-  async function completeTask(listItem, taskId, currentStatus) {
+  async function completeTask(listItem, task) {
     let newStatus;
-    const doingList = document
-      .getElementById("in-progress")
-      .querySelector(".task-container");
-    const doneList = document
-      .getElementById("done")
-      .querySelector(".task-container");
-
-    if (currentStatus === "TODO") {
+    if (task.status === "TODO") {
       newStatus = "DOING";
-      doingList.appendChild(listItem);
-    } else if (currentStatus === "DOING") {
+      document
+        .getElementById("in-progress")
+        .querySelector(".task-container")
+        .appendChild(listItem);
+    } else if (task.status === "DOING") {
       newStatus = "DONE";
-      doneList.appendChild(listItem);
+      document
+        .getElementById("done")
+        .querySelector(".task-container")
+        .appendChild(listItem);
       listItem.querySelector(".complete-btn").remove();
-      listItem.querySelector(".edit-btn").remove(); // Remover botão de edição
-      listItem.querySelector(".delete-btn").remove();
+      listItem.querySelector(".edit-btn").remove();
     }
 
     try {
-      await fetch(`http://localhost:8097/tasks/${taskId}`, {
-        // Corrigido URL
+      await fetch(`http://localhost:8097/tasks/${task.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({ ...task, status: newStatus }),
       });
+      task.status = newStatus;
     } catch (error) {
       console.error("Erro ao mover tarefa:", error);
     }
