@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const newTitle = document.getElementById("edit-task-title").value.trim();
       const newDesc = document.getElementById("edit-task-desc").value.trim();
 
-      if (newTitle && newDesc) {
+      if (newTitle) {
         try {
           const updatedTask = {
             ...task,
@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
           console.error("Erro ao editar tarefa:", error);
         }
       } else {
-        alert("Task title and description cannot be empty!");
+        alert("Task title cannot be empty!");
       }
     });
 
